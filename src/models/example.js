@@ -1,4 +1,4 @@
-import { query } from '../services/example'
+import { getProjectList } from '../services/example'
 const namespace = 'example'
 export default {
   namespace,
@@ -15,11 +15,11 @@ export default {
   // },
 
   effects: {
-    *fetch({ payload }, { call, put, select }) {  // eslint-disable-line
+    *fetchList(_, { call, put, select }) {  // eslint-disable-line
       const searchCond = yield select(state => state[namespace].searchCond);
-      const rsp = yield call(query, searchCond) 
+      const rsp = yield call(getProjectList, searchCond) 
       console.log(rsp)
-      yield put({ type: 'save' });
+      // yield put({ type: 'save' });
     },
   },
 
